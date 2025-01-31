@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocena Ženske</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Ocena Ženske 🌟</h1>
+        
+        <div class="rating-form">
+            <h2>Oceni</h2>
+            <div class="subject-group">
+                <label for="ziva">Živa:</label>
+                <select id="ziva">
+                    <option value="">Ne želim oceniti</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="subject-group">
+                <label for="eva">Eva:</label>
+                <select id="eva">
+                    <option value="">Ne želim oceniti</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="subject-group">
+                <label for="ria">Ria:</label>
+                <select id="ria">
+                    <option value="">Ne želim oceniti</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="subject-group">
+                <label for="skiza">Škiza:</label>
+                <select id="skiza">
+                    <option value="">Ne želim oceniti</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="subject-group">
+                <label for="nabi">Nabi:</label>
+                <select id="nabi">
+                    <option value="">Ne želim oceniti</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <button id="submit-btn" class="submit-button">Oddaj Ocene 💝</button>
+        </div>
+
+        <div class="results" id="results">
+            <h2>Rezultati</h2>
+            <div class="importance-scores">
+                <h3>Teže pomembnosti:</h3>
+                <ul id="importance-list"></ul>
+            </div>
+            <div class="subject-rankings">
+                <h3>Razvrščeni predmeti:</h3>
+                <ul id="rankings-list"></ul>
+            </div>
+        </div>
+
+        <div class="chat-section">
+            <h2>💬 Pogovor z Mojco - Kuharsko Mojstrico</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message assistant">
+                        <img src="https://img.freepik.com/free-photo/portrait-young-beautiful-cook-white-uniform_176474-87616.jpg" alt="Mojca" class="assistant-avatar">
+                        <div class="message-content">
+                            Živjo! Jaz sem Mojca, tvoja kuharska pomočnica. Obožujem kuhanje in z veseljem delim svoje recepte in nasvete. Kaj te zanima? 😊
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Vprašaj me karkoli o kuhanju...">
+                    <button id="send-button">Pošlji</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-section">
+            <h2>🎮 Kuharska Igra</h2>
+            <div class="game-container">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-ui">
+                    <div class="game-stats">
+                        <span>Točke: <span id="score">0</span></span>
+                        <span>Čas: <span id="time">60</span>s</span>
+                    </div>
+                    <div class="game-recipe">
+                        <h3>Recept:</h3>
+                        <ul id="recipe-list"></ul>
+                    </div>
+                    <button id="startGame" class="game-button">Začni Igro</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="wind-section">
+            <h2>🌪️ Napoved Vetra - Strunjan</h2>
+            <div class="wind-container">
+                <div class="wind-header">
+                    <div class="wind-current">
+                        <div class="wind-speed">
+                            <span id="currentSpeed">0</span>
+                            <span class="unit">kts</span>
+                        </div>
+                        <div class="wind-direction">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5585/5585856.png" id="windArrow" alt="Wind direction">
+                            <span id="currentDirection">N</span>
+                        </div>
+                    </div>
+                    <div class="wind-details">
+                        <div>Temperatura: <span id="temperature">--</span>°C</div>
+                        <div>Vlažnost: <span id="humidity">--</span>%</div>
+                    </div>
+                </div>
+                <div class="wind-forecast">
+                    <canvas id="windChart"></canvas>
+                </div>
+                <div class="wind-footer">
+                    <button id="refreshWind" class="wind-button">Osveži Podatke</button>
+                    <div class="last-updated">
+                        Zadnja posodobitev: <span id="lastUpdated">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="deals-section">
+            <h2>🏷️ Trenutne Akcije</h2>
+            <div class="deals-container">
+                <div class="deals-category">
+                    <h3>Kondomi v Akciji</h3>
+                    <div class="deals-grid" id="condomDeals">
+                        <!-- Deals will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="deals-category">
+                    <h3>Plan B Tablete v Akciji</h3>
+                    <div class="deals-grid" id="planBDeals">
+                        <!-- Deals will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="deals-footer">
+                    <button id="refreshDeals" class="deals-button">Osveži Ponudbe</button>
+                    <div class="deals-updated">
+                        Zadnja posodobitev: <span id="dealsLastUpdated">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-section">
+            <h2>💬 Klepet</h2>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <input type="text" id="username" placeholder="Vpiši svoje ime" class="username-input">
+                    <button id="joinChat" class="chat-button">Pridruži se</button>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be added here -->
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="messageInput" placeholder="Napiši sporočilo..." disabled>
+                    <button id="sendMessage" class="chat-button" disabled>Pošlji</button>
+                </div>
+
+                <div class="chat-info">
+                    <span id="onlineUsers">Aktivni uporabniki: 0</span>
+                    <span id="typingStatus"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+    <script src="script.js"></script>
+    <script src="wind.js"></script>
+    <script src="deals.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
