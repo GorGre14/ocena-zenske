@@ -3,7 +3,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
 // Serve static files
 app.use(express.static(__dirname));
@@ -57,6 +57,6 @@ io.on('connection', (socket) => {
 });
 
 // Start server
-http.listen(port, () => {
+http.listen(port, '0.0.0.0', () => {
     console.log(`Server running at http://localhost:${port}`);
 });
