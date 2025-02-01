@@ -978,3 +978,203 @@ li:last-child {
         transform: none;
     }
 }
+
+/* iPhone-specific optimizations */
+@supports (-webkit-touch-callout: none) {
+    /* Safe area insets for notched iPhones */
+    .container {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-top: env(safe-area-inset-top);
+    }
+
+    /* Prevent overscroll bounce effect */
+    html {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Fix for input zoom on iPhone */
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        font-size: 16px !important;
+    }
+
+    /* Better tap targets for iPhone */
+    .chat-button,
+    .deal-card,
+    .username-input,
+    #messageInput {
+        min-height: 44px;
+        padding: 12px;
+    }
+
+    /* Improved scrolling for chat messages */
+    .chat-messages {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+    }
+
+    /* Prevent text selection */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Allow text selection in inputs and messages */
+    input[type="text"],
+    textarea,
+    .chat-message {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+}
+
+/* iPhone SE and smaller screens */
+@media screen and (max-width: 375px) {
+    .header h1 {
+        font-size: 1.3rem;
+    }
+
+    .chat-message {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .chat-button {
+        font-size: 0.9rem;
+    }
+
+    .deal-card {
+        padding: 0.8rem;
+    }
+
+    .deal-title {
+        font-size: 1rem;
+    }
+
+    .deal-price {
+        font-size: 0.9rem;
+    }
+}
+
+/* iPhone landscape mode */
+@media screen and (max-height: 428px) and (orientation: landscape) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .header {
+        padding: 0.5rem;
+    }
+
+    .chat-section,
+    .game-section,
+    .wind-section,
+    .deals-section {
+        margin: 0.5rem 0;
+        padding: 0.8rem;
+    }
+
+    .chat-messages {
+        min-height: 150px;
+        max-height: 200px;
+    }
+
+    .game-container {
+        height: 200px;
+    }
+
+    .deals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .deal-image {
+        height: 100px;
+    }
+}
+
+/* iPhone notch handling */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .header {
+        padding-top: calc(1rem + env(safe-area-inset-top));
+        padding-left: calc(1rem + env(safe-area-inset-left));
+        padding-right: calc(1rem + env(safe-area-inset-right));
+    }
+
+    .chat-section,
+    .game-section,
+    .wind-section,
+    .deals-section {
+        padding-left: calc(1rem + env(safe-area-inset-left));
+        padding-right: calc(1rem + env(safe-area-inset-right));
+    }
+
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* iOS momentum scrolling for elements */
+.chat-messages,
+.deals-grid,
+body {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* iOS-style button active state */
+.chat-button:active,
+.deal-card:active {
+    opacity: 0.7;
+    transition: opacity 0.1s ease;
+}
+
+/* Disable pull-to-refresh */
+body {
+    overscroll-behavior-y: none;
+}
+
+/* Fix for iOS form elements */
+input, textarea, button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 10px;
+}
+
+/* iOS-style scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
